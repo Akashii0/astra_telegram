@@ -42,7 +42,6 @@ async def lifespan(_: FastAPI):
     yield
 
     # ---- PTB shutdown (graceful) ----
-    print("Shutting Down Server...")
     # 1. Stop accepting new updates by deleting the webhook
     await ptb_app.bot.delete_webhook()
     print("Webhook deleted. No new updates will be sent.")
@@ -56,6 +55,7 @@ async def lifespan(_: FastAPI):
     await ptb_app.shutdown()
     print("Bot application shut down cleanly.")
 
+    print("Shutting Down Server...")
 
 app = FastAPI(
     title="Astra Bot",
